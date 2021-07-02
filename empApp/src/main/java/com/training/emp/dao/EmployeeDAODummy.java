@@ -65,4 +65,15 @@ public class EmployeeDAODummy implements EmployeeDAO {
 		}
 
 	}
+
+	@Override
+	public Employee findByName(String name) {
+		for (Employee emp : EmployeeRepositoryImpl.getEmployeeSet()) {
+			String checkName = emp.getName();
+			if(checkName.equalsIgnoreCase(name)) {
+				return emp;
+			}
+		}
+		return null;
+	}
 }

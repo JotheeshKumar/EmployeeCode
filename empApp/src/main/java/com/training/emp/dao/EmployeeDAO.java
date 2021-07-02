@@ -9,11 +9,15 @@ public interface EmployeeDAO {
 	Set<Employee> findAll();
 
 	Employee findById(int id);
-
+	
+	Employee findByName(String name);
+	
 	void save(Employee employee);
 
 	void update(Employee employee);
 
 	void delete(int id);
+	
+	
 
 }

@@ -9,6 +9,8 @@ public interface EmployeeService {
 	Set<Employee> findAll();
 
 	Employee findById(int id) throws EmployeeNotFoundException;
+	
+	Employee findByName(String name) throws EmployeeNotFoundException;
 
 	void save(Employee employee);
 

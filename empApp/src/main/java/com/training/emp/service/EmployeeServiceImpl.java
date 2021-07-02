@@ -15,19 +15,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeServiceImpl() {
 		repository = new EmployeeRepositoryImpl();
 		dao= new EmployeeDAODummy();
-//		dao = new EmployeeDAOImpl();
 	}
 
 	@Override
 	public Set<Employee> findAll() {
 		return dao.findAll();
-//		return dao.findAll();
 	}
 
 	@Override
 	public Employee findById(int id) throws EmployeeNotFoundException {
 		Employee employee = dao.findById(id);
-//		Employee employee = dao.findById(id);
 		if (employee == null) {
 			throw new EmployeeNotFoundException("Employee Id Not Found");
 		} else {
@@ -45,7 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void update(Employee employee) throws EmployeeNotFoundException {
 		Employee result = dao.findById(employee.getId());
-//		Employee result = dao.findById(employee.getId());
 		if (result == null) {
 			try {
 				throw new EmployeeNotFoundException("Employee Id Not Found");
@@ -54,14 +50,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 			}
 		} else {
 			dao.update(employee);
-//			dao.update(employee);
 		}
 
 	}
 
 	@Override
 	public void delete(int id) throws EmployeeNotFoundException {
-		// Employee employee = repository.findById(id);
 		Employee employee = dao.findById(id);
 		if (employee == null) {
 			try {
@@ -70,9 +64,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 				System.out.println(	e.getMessage());
 			}
 		} else {
-			// repository.delete(id);
 			dao.delete(id);
 		}
+	}
+
+	@Override
+	public Employee findByName(String name) throws EmployeeNotFoundException {
+		Employee employee= dao.findByName(name);
+		if(employee== null) {
+			try {
+				throw new EmployeeNotFoundException("Employee name doesn't extist!..");
+			} catch (Exception e) {
+				System.out.println(	e.getMessage());
+			}
+		}
+		return employee;
 	}
 
 }
